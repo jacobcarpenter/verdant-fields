@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "farming game",
   "devDependencies": {
+    "http-server": "^0.8.5",
     "jspm": "^0.16.14"
   },
   "jspm": {
@@ -17,5 +18,8 @@
       "babel-runtime": "npm:babel-runtime@^5.8.24",
       "core-js": "npm:core-js@^1.1.4"
     }
+  },
+  "scripts": {
+    "start": "http-server ./browser -o"
   }
 }
