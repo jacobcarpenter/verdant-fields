@@ -45,7 +45,6 @@ function create() {
 			}
 		}
 	}
-
 }
 
 function update() {
