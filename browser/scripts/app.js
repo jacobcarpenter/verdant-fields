@@ -49,8 +49,8 @@ function create() {
 }
 
 function update() {
-	let selectionOriginX = Math.trunc(game.input.x / 16) * 16;
-	let selectionOriginY = Math.trunc(game.input.y / 16) * 16;
+	const selectionOriginX = Math.trunc(game.input.x / 16) * 16;
+	const selectionOriginY = Math.trunc(game.input.y / 16) * 16;
 
 	selectionIndicator.x = selectionOriginX;
 	selectionIndicator.y = selectionOriginY;
