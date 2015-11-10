@@ -10,6 +10,8 @@ let game = new Phaser.Game(width * 16, height * 16, Phaser.CANVAS, '', {
 });
 
 let selectionIndicator;
+let field = [];
+let trees = [];
 
 function preload() {
 	game.load.path = 'assets/';
@@ -37,20 +39,38 @@ function create() {
 
 			// ground layer
 			const spriteRow = game.rnd.integerInRange(1, 23) === 1 ? 5 : 4;
-			ground.create(x, y, 'garden', spriteRow * 4 + 1);
+			field.push(ground.create(x, y, 'garden', spriteRow * 4 + 1));
 
 			// plant a tree?
 			if (game.rnd.integerInRange(1, 50) === 1) {
-				game.add.image(x, y - 2, 'garden', 0);
+				trees.push(game.add.image(x, y - 2, 'garden', 0));
 			}
 		}
 	}
+
+	game.input.onDown.add(chopTreeOrPlowField, this);
 }
 
 function update() {
-	const selectionOriginX = Math.trunc(game.input.x / 16) * 16;
-	const selectionOriginY = Math.trunc(game.input.y / 16) * 16;
+	selectionIndicator.x = Math.trunc(game.input.x / 16) * 16;
+	selectionIndicator.y = Math.trunc(game.input.y / 16) * 16;
+}
 
-	selectionIndicator.x = selectionOriginX;
-	selectionIndicator.y = selectionOriginY;
+function chopTreeOrPlowField() {
+	const col = Math.trunc(game.input.x / 16);
+	const row = Math.trunc(game.input.y / 16);
+
+	const x = col * 16;
+	const y = row * 16;
+
+	let found = trees.findIndex(t => t.x === x && t.y === y - 2);
+	if (found !== -1) {
+		trees[found].destroy();
+		trees.splice(found, 1);
+		return;
+	}
+
+	const img = field[row * width + col];
+	if (img.frame === 17)
+		img.frame = 21;
 }
