@@ -5,7 +5,7 @@ import GroundTile from './groundTile';
 const width = 12;
 const height = 8;
 
-let game = new Phaser.Game(width * tileSize, height * tileSize, Phaser.CANVAS, '', {
+let game = new Phaser.Game(width * tileSize, height * tileSize, Phaser.CANVAS, 'game-container', {
 	preload,
 	create,
 	update

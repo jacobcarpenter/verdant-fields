@@ -2,13 +2,41 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Farming</title>
+	<title>Verdant fields</title>
 	<script src="jspm_packages/system.js"></script>
 	<script src="config.js"></script>
 </head>
 <body>
+	<div id="game-container"></div>
+
+	<svg id="sprite-legend"
+		width="256" height="512"
+		xmlns="http://www.w3.org/2000/svg"
+		xmlns:xlink="http://www.w3.org/1999/xlink">
+		<image xlink:href="assets/garden.png" x="0" y="0" height="512" width="256" style="image-rendering: pixelated" />
+	</svg>
 </body>
 <script>
 	System.import('./scripts/app');
+
+	var legend = document.getElementById('sprite-legend');
+	for (var col = 1; col < 4; ++col) {
+		var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+		line.setAttribute('x1', col * 64);
+		line.setAttribute('y1', 0);
+		line.setAttribute('x2', col * 64);
+		line.setAttribute('y2', 512);
+		line.setAttribute('stroke', '#F00');
+		legend.appendChild(line);
+	}
+	for (var row = 1; row < 8; ++row) {
+		var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+		line.setAttribute('x1', 0);
+		line.setAttribute('y1', row * 64);
+		line.setAttribute('x2', 256);
+		line.setAttribute('y2', row * 64);
+		line.setAttribute('stroke', '#F00');
+		legend.appendChild(line);
+	}
 </script>
 </html>
