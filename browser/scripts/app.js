@@ -1,11 +1,9 @@
 import { Phaser } from 'phaser';
-import { assets, assetPath, tileTypes } from './constants';
+import { assets, assetPath, tileSize, tileTypes } from './constants';
 import GroundTile from './groundTile';
 
 const width = 12;
 const height = 8;
-
-const tileSize = 16;
 
 let game = new Phaser.Game(width * tileSize, height * tileSize, Phaser.CANVAS, '', {
 	preload,
@@ -47,7 +45,7 @@ function create() {
 			ground.add(new GroundTile(game, x, y, tileType));
 
 			// plant a tree?
-			if (game.rnd.integerInRange(1, 50) === 1) {
+			if (tileType === tileTypes.grass && game.rnd.integerInRange(1, 43) === 1) {
 				trees.create(x, y - 2, assets.garden, 0);
 			}
 		}
