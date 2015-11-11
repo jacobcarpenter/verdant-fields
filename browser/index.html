@@ -7,14 +7,15 @@
 	<script src="config.js"></script>
 </head>
 <body>
-	<div id="game-container"></div>
-
 	<svg id="sprite-legend"
 		width="256" height="512"
 		xmlns="http://www.w3.org/2000/svg"
-		xmlns:xlink="http://www.w3.org/1999/xlink">
+		xmlns:xlink="http://www.w3.org/1999/xlink"
+		style="float: right">
 		<image xlink:href="assets/garden.png" x="0" y="0" height="512" width="256" style="image-rendering: pixelated" />
 	</svg>
+
+	<div id="game-container"></div>
 </body>
 <script>
 	System.import('./scripts/app');
@@ -37,6 +38,17 @@
 		line.setAttribute('y2', row * 64);
 		line.setAttribute('stroke', '#F00');
 		legend.appendChild(line);
+	}
+
+	for (var row = 0; row < 8; ++row) {
+		for (var col = 0; col < 4; ++col) {
+			var label = document.createElementNS('http://www.w3.org/2000/svg', 'text')
+			label.textContent = row * 4 + col;
+			label.setAttribute('x', col * 64 + 60);
+			label.setAttribute('y', row * 64 + 60);
+			label.setAttribute('style', 'text-anchor: end; fill: #F00; font-family: sans-serif');
+			legend.appendChild(label);
+		}
 	}
 </script>
 </html>
