@@ -5,7 +5,9 @@ import GroundTile from './groundTile';
 const width = 12;
 const height = 8;
 
-let game = new Phaser.Game(width * 16, height * 16, Phaser.CANVAS, '', {
+const tileSize = 16;
+
+let game = new Phaser.Game(width * tileSize, height * tileSize, Phaser.CANVAS, '', {
 	preload,
 	create,
 	update
@@ -19,7 +21,7 @@ function preload() {
 	game.load.path = assetPath,
 	game.load
 		.image(assets.selection)
-		.spritesheet(assets.garden, null, 16, 16);
+		.spritesheet(assets.garden, null, tileSize, tileSize);
 }
 
 function create() {
@@ -35,8 +37,8 @@ function create() {
 
 	for (let row = 0; row < height; ++row) {
 		for (let col = 0; col < width; ++col) {
-			const x = 16 * col;
-			const y = 16 * row;
+			const x = col * tileSize;
+			const y = row * tileSize;
 
 			// ground layer
 			const tileType = game.rnd.integerInRange(1, 23) === 1 ?
@@ -68,8 +70,8 @@ function chopTreeOrPlowField() {
 		return;
 	}
 
-	const col = Math.trunc(bounds.x / 16);
-	const row = Math.trunc(bounds.y / 16);
+	const col = Math.trunc(bounds.x / tileSize);
+	const row = Math.trunc(bounds.y / tileSize);
 	const tile = ground.getAt(row * width + col);
 	if (tile.tileType === tileTypes.grass)
 		tile.tileType = tileTypes.tilled;
@@ -77,7 +79,7 @@ function chopTreeOrPlowField() {
 
 function getContainingTileBounds({ x, y }) {
 	return new Phaser.Rectangle(
-		Math.trunc(x / 16) * 16,
-		Math.trunc(y / 16) * 16,
-		16, 16);
+		Math.trunc(x / tileSize) * tileSize,
+		Math.trunc(y / tileSize) * tileSize,
+		tileSize, tileSize);
 }
