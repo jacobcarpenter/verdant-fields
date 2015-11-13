@@ -9,7 +9,6 @@ export default class Boot extends Phaser.State {
 		this.game.scale.setUserScale(4, 4);
 		this.game.scale.refresh();
 
-		// TODO: move state name to a constant
 		this.game.state.start(states.game);
 	}
 }
