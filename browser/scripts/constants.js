@@ -1,6 +1,6 @@
 export const assets = {
 	selection: 'selection',
-	garden: 'garden',
+	garden: 'garden-edit',
 };
 
 export const assetPath = 'assets/';
@@ -14,6 +14,7 @@ export const tileSize = 16;
 
 export const tileTypes = {
 	grass: 'grass',
+	partlyTilled: 'partlyTilled',
 	tilled: 'tilled',
 };
 

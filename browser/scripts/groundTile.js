@@ -3,7 +3,8 @@ import { assets, tileTypes } from './constants';
 
 const tileTypeToFrame = {
 	[tileTypes.grass]: 17,
-	[tileTypes.tilled]: 21,
+	[tileTypes.partlyTilled]: 21,
+	[tileTypes.tilled]: 16,
 }
 
 export default class GroundTile extends Phaser.Image {
