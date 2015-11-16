@@ -2,7 +2,7 @@ import { Phaser } from 'phaser';
 import { assetPath, assets, dimensions, tileSize, tileTypes } from './constants';
 import GroundTile from './groundTile';
 
-export default class extends Phaser.State {
+export default class Game extends Phaser.State {
 	constructor() {
 		super();
 		this.selectionIndicator = null;
